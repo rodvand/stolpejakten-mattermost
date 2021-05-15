@@ -1,0 +1,5 @@
+Johan,52.0,20838
+Laura Rødvand,60.0,18198
+Martin Rødvand,55.0,19829
+Jesper Øynes Vestlie,75.0,14079
+Anne-Marte,46.0,23704
