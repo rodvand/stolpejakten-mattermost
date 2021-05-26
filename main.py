@@ -1,5 +1,6 @@
 import requests
 import argparse
+import sys
 from dotenv import load_dotenv
 from os import path, environ
 
@@ -25,6 +26,17 @@ def auth(username, password):
 
     if r.status_code == requests.codes.ok:
         return r.json()['token']
+    else:
+        return None
+
+
+def get_groups(token):
+    url = "{}affiliations/me".format(API_URL)
+    headers = {"Authorization": "Bearer {}".format(token)}
+    r = requests.get(url, headers=headers)
+
+    if r.status_code == requests.codes.ok:
+        return r.json()
     else:
         return None
 
@@ -60,6 +72,7 @@ if __name__ == '__main__':
     parser.add_argument('-d', '--debug', action='store_true', help='Debug the application')
     parser.add_argument('-t', '--toplist', action='store_true', help='Send top list only')
     parser.add_argument('-m', '--mattermost', action='store_false', help='Send data to mattermost')
+    parser.add_argument('-g', '--printgroups', action='store_true', help='Print groups where I am a member')
 
     args = parser.parse_args()
     if args.debug:
@@ -86,6 +99,15 @@ if __name__ == '__main__':
     token = auth(STOLPEJAKTEN_USER, STOLPEJAKTEN_PASSWORD)
     group_info = get_group(token, STOLPEJAKTEN_GROUP)
     group_data = {}
+
+    if args.printgroups:
+        groups = get_groups(token)
+        if groups:
+            res = groups['results']
+            for r in res:
+                print("Group name: {} - Group ID: {}".format(r['name'], r['id']))
+        sys.exit(0)
+
     output = ""
     change = False
     for gi in group_info['results']:
