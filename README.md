@@ -1,5 +1,17 @@
 # stolpejakten-mattermost
-Integrasjon mellom Stolpejakten-gruppe og Mattermost. 
+Integrasjon mellom Stolpejakten-gruppe og Mattermost.
+```
+usage: main.py [-h] [-d] [-t] [-m] [-g]
+
+Print stolpejakten data to Mattermost
+
+optional arguments:
+  -h, --help         show this help message and exit
+  -d, --debug        Debug the application
+  -t, --toplist      Send top list only
+  -m, --mattermost   Send data to mattermost
+  -g, --printgroups  Print groups where I am a member
+```
 
 ![Screenshot of an example mattermost message](pics/mattermost-example.png "Mattermost example")
 
