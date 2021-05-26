@@ -97,7 +97,7 @@ if __name__ == '__main__':
             if group_view[user] < stolper:
                 diff = int(stolper) - int(group_view[user])
                 text = "{} has {} more stolper than last check. " \
-                       "New overall rank is {}. Total number of stolper: {}".format(user, diff, rank, stolper)
+                       "New overall rank is {}. Total number of stolper: {:0.0f}".format(user, diff, rank, stolper)
                 if args.debug:
                     print(text)
                 change = True
