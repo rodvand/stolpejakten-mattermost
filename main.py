@@ -11,6 +11,7 @@ MATTERMOST_URL = environ.get("MATTERMOST_URL")
 MATTERMOST_HOOK = environ.get("MATTERMOST_HOOK")
 STOLPEJAKTEN_USER = environ.get("STOLPEJAKTEN_USER")
 STOLPEJAKTEN_PASSWORD = environ.get("STOLPEJAKTEN_PASSWORD")
+STOLPEJAKTEN_GROUP = environ.get("STOLPEJAKTEN_GROUP")
 
 
 def auth(username, password):
@@ -83,7 +84,7 @@ if __name__ == '__main__':
                 group_view[user] = int(float(stolper))
 
     token = auth(STOLPEJAKTEN_USER, STOLPEJAKTEN_PASSWORD)
-    group_info = get_group(token, "5eb6ba41956f8801b057d2a2")
+    group_info = get_group(token, STOLPEJAKTEN_GROUP)
     group_data = {}
     output = ""
     change = False
